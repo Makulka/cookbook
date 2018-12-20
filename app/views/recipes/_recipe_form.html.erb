@@ -1,0 +1,50 @@
+<%= render "shared/errors", obj: @recipe %>
+
+
+<div class="column">
+    <%= form_for(@recipe, :html => {class: "ui form", role: "form"}) do |f| %>
+    
+        <div class="field">
+            <%= f.label :title, "Title" %>
+            <div class="ui left icon input">
+                <%= f.text_field :title, placeholder: "Title", autofocus: true %>
+                <i class="user icon"></i>
+            </div>
+        </div>
+        
+        <div class="field">
+            <%= f.label :description, "Description" %>
+            <div class="ui left icon input">
+                <%= f.text_field :description, placeholder: "Description" %>
+                <i class="user icon"></i>
+            </div>
+        </div>
+        
+        <div class="field">
+            <%= f.label :ingredients, "Ingredients" %>
+            <div class="ui left icon input">
+                <%= f.text_field :ingredients, placeholder: "Ingredients" %>
+                <i class="user icon"></i>
+            </div>
+        </div>
+        
+        <div class="field">
+            <%= f.label :steps, "Steps" %>
+            <div class="ui left icon input">
+                <%= f.text_field :steps, placeholder: "Steps" %>
+                <i class="user icon"></i>
+            </div>
+        </div>
+        
+        <div class="field">
+            <%= f.label :link, "Link" %>
+            <div class="ui left icon input">
+                <%= f.text_field :link, placeholder: "Link" %>
+                <i class="user icon"></i>
+            </div>
+        </div>
+        
+        
+        <%= f.submit(@recipe.new_record? ? "Create" : "Edit", class: "ui orange submit button") %>
+    <% end %>
+</div>

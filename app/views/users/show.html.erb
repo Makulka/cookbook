@@ -1,0 +1,24 @@
+<div class="ui card">
+    <div class="content">
+        <div class="header">Your details</div>
+            <div class="content">
+                <strong>Name: </strong><%= @user.username%></span>
+            </div>
+            <div class="content">
+                <strong>Email: </strong><%= @user.email%></span>
+            </div>
+        </div>
+        <div class="extra content">
+            <%= link_to "Edit your details", edit_user_path(@user), class: "ui orange submit button" %>
+        </div>
+    </div>
+</div>
+
+<h1 class="ui container"> My recipes</h1>
+<% if @user.recipes.count > 0 %>
+    <%= render "recipes/recipe", obj: @user.recipes %>
+<% else %>
+    You dont have any recipes
+<% end %>
+   
+        

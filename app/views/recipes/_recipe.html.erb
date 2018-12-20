@@ -1,0 +1,37 @@
+<% obj.each do |recipe| %>
+    <div class="ui container">
+        <div class="ui card">
+            
+            <div class="content">
+                <div class="header">
+                    <%= recipe.title %>
+                </div>
+                <div class="meta">
+                    Created by: <%= User.find(recipe.creator_id).username %>,
+                    <%= time_ago_in_words(recipe.created_at) %> ago,
+                    last updated: <%= time_ago_in_words(recipe.updated_at) %> ago
+                </div>
+                <div class="description">
+                    Description: <%= recipe.description %>
+                </div>
+            </div>
+            
+            <div class="extra content">
+                <div class="ui three buttons">
+                    <%= link_to "View", recipe_path(recipe), class: "ui basic green button" %>
+                    <% if logged_in? && recipe.creator_id == current_user.id %>
+                        <%= link_to "Edit", edit_recipe_path(recipe), class: "ui basic blue button" %>
+                    <% end %>
+                    <% if !current_user.has_not_this_recipe?(recipe.id)%>
+                        <%= link_to "Remove", user_recipe_path(recipe), method: :delete,
+                            data: { confirm: "Are you sure you want to remove this recipe from your list?"},class: "ui basic red button" %>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<% end %>
+
+
+  

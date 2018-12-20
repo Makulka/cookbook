@@ -1,0 +1,33 @@
+<% if params[:action] == "search" %>
+  <div>
+    <%= render "shared/flash_messages" %>
+  </div>
+<% end %>
+
+<% if @recipes && @recipes.size > 0 %>
+    
+        <table>
+            <tbody>
+                <% @recipes.each do |recipe| %>
+                    <tr>
+                        <td><strong>Title:</strong> <%= recipe.title %></td>
+                        <td><strong>Description:</strong> <%= recipe.description %></td>
+                        <td><%= link_to "View Recipe", recipe_path(recipe), class: "ui green button" %><td>
+                       
+                        <% if logged_in? && recipe.creator_id == current_user.id %>
+                            <td><%= link_to "Edit", edit_recipe_path(recipe), class: "ui blue button" %></td>
+                        <% end %>
+                        
+                        <% if current_user.has_not_this_recipe?(recipe.id)%>
+                            <td><%= link_to "Add", user_recipes_path(user: current_user, recipe: recipe), class: "ui blue button", method: :post %></td>
+                        <% else %>
+                            <td>this recipe has been added<td>
+                        <% end %>
+                        
+                        </td> 
+                    </tr>
+                <% end %>
+            </tbody>
+        </table>
+    
+<% end %> 
