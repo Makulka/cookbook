@@ -12,4 +12,11 @@ Rails.application.routes.draw do
   resources :user_recipes, except: [:edit, :update]
   
   get "search_recipes", to: "recipes#search"
+  
+  resources :friendships, except: [:edit, :update]
+  
+  get "search_friends", to: "users#search"
+  
+  get "my_friends", to: "users#my_friends"
+  get "my_recipes", to: "users#my_recipes"
 end

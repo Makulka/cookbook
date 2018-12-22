@@ -12,6 +12,14 @@
                         <%= link_to "Search recipes", new_user_recipe_path, class: "item" %>
                     </div>
                 </div>
+                <div class="ui dropdown item">
+                    Friends <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <%= link_to "All users", users_path, class: "item" %>
+                        <%= link_to "My friends", user_path(current_user), class: "item" %>
+                        <%= link_to "Find a new friend", new_friendship_path, class: "item" %>
+                    </div>
+                </div>
             <% else %>
                 <div class="ui dropdown item">
                     Recipes <i class="dropdown icon"></i>

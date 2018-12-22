@@ -1,0 +1,35 @@
+<div class="margin-bottom-50">
+    <h2 class="ui center aligned icon header">
+        <i class="circular olive beer icon"></i>
+        All cooking enthusiasts
+    </h2>
+</div>
+
+<div class="ui centered cards">
+    <% @users.each do |user| %>
+    
+        <div class="card">
+            <div class="content">
+                <div class="header"><%= user.username%></div>
+                <% if user.first_name || user.last_name %>
+                    <div class="content">
+                        <strong>Name: </strong><%= user.first_name if user.first_name %> <%= user.last_name if user.last_name %>
+                    </div>
+                <% end %>
+                <div class="content">
+                    <strong>Email: </strong><%= user.email%>
+                </div>
+                <div class="content">
+                    <strong>Number of favourited recipes: </strong><%= user.recipes.count%>
+                </div>
+                <div class="content">
+                    <strong>Number of friends: </strong><%= user.friends.count%>
+                </div>
+            </div>
+                
+                <%= link_to "View profile", user_path(user), class: "ui olive bottom attached button" %>
+            
+        </div>
+        
+    <% end %>
+</div>

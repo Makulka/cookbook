@@ -6,10 +6,12 @@ class UsersController < ApplicationController
     before_action :require_same_user_or_admin, only: [:edit, :update, :destroy]
     
     def index
+        @users = User.all
     end
     
     def show
         @recipes = Recipe.find_created_recipes(@user.id)
+        @friends = @user.friends
     end
     
     def edit
@@ -41,12 +43,32 @@ class UsersController < ApplicationController
         redirect_to users_path
     end
     
+    def search
+        if params[:search_param].blank?
+          flash.now[:danger] = "Oops, are you looking for an empty friend?"
+        else
+          @friends = User.search(params[:search_param], current_user)
+          flash.now[:danger] = "No user with your search criteria was found" if @friends.blank?
+        end
+        respond_to do |format|
+          format.js { render partial: 'friendships/result' }
+        end
+    end
+    
+    def my_friends
+         @friends = current_user.friends
+    end
+    
+    def my_recipes
+         @recipes = Recipe.find_created_recipes(current_user.id)
+    end
+    
     
     
     private
     
     def user_params
-       params.require(:user).permit(:username, :email, :password) 
+       params.require(:user).permit(:username, :email, :password, :first_name, :last_name) 
     end
     
     def find_user

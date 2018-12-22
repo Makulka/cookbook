@@ -17,27 +17,44 @@
 </div>
 
 <div class="ui container"> 
-
-    <div class="margin-bottom-50">
-        <div class="ui header large olive "> My favourited recipes </div>
-        <% if @user.recipes.count > 0 %>
-            <%= render "recipes/recipe", obj: @user.recipes %>
+    <div class="ui grid">
+        <div class="twelve wide column">
+    
+        <div class="margin-bottom-50">
+            <div class="ui header large olive "> My favourited recipes </div>
+            <% if @user.recipes.count > 0 %>
+                <div class="ui cards">
+                    <%= render "recipes/recipe", obj: @user.recipes %>
+                </div>
+            <% else %>
+                <div class="header">
+                    You dont have any saved recipes
+                </div>
+            <% end %>
+        </div>
+        
+        <div class="ui header large olive "> My recipes </div>
+        <% if @recipes.count > 0 %>
+            <div class="ui cards">
+                <%= render "recipes/recipe", obj: @recipes %>
+            </div>
         <% else %>
             <div class="header">
-                You dont have any saved recipes
+                You have not created any recipes
+            </div>
+        <% end %>
+    </div> 
+    
+    <div class="four wide column">
+        <div class="ui header large olive "> My Friends </div>
+        <% if @friends.count > 0 %>
+            <%= render "users/friend", obj: @friends %>
+        <% else %>
+            <div class="header">
+                You have not added any friends
             </div>
         <% end %>
     </div>
-    
-    <div class="ui header large olive "> My recipes </div>
-    <% if @recipes.count > 0 %>
-        <%= render "recipes/recipe", obj: @recipes %>
-    <% else %>
-        <div class="header">
-            You have not created any recipes
-        </div>
-    <% end %>
-    
     
 </div>
    

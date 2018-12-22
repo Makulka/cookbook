@@ -1,0 +1,45 @@
+<% if params[:action] == "search" %>
+  <div>
+    <%= render "shared/flash_messages" %>
+  </div>
+<% end %>
+
+<% if @friends && @friends.size > 0 %>
+  <table class="ui celled olive table">
+    <thead>
+      <tr>
+        <th class="two wide">Username</th>
+        <th class="two wide">First name</th>
+        <th class="two wide">Surname</th>
+        <th class="three wide">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @friends.each do |user| %>
+        <tr>
+            <td><%= user.username %></td>
+            <td>
+                <% if user.first_name %>
+                    <%= user.first_name %>
+                <% else %>
+                    <em>Not provided</em>
+                <% end %>
+            </td>
+            <td>
+                <% if user.last_name %>
+                    <%= user.last_name %>
+                <% else %>
+                    <em>Not provided</em>
+                <% end %>
+            </td>
+          <td>
+            <%= link_to "View", user_path(user), class: "ui olive button" %>
+            <% if current_user.not_friends_with?(user.id)%>
+                <%= link_to "Add", friendships_path(user: current_user, friend: user), class: "ui blue button", method: :post %>
+            <% end %>
+          </td> 
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %> 

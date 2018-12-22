@@ -1,0 +1,10 @@
+<div class="ui large list">
+    <% obj.each do |friend| %>
+        <div class="item">
+            <i class="users icon"></i>
+            <div class="content">
+                <%= link_to "#{friend.username}", user_path(friend) %>
+            </div>
+        </div>
+    <% end %>
+</div>

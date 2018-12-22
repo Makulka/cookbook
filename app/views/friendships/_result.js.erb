@@ -1,0 +1,7 @@
+ /* global $ */
+$('#results').html("<%= j (render 'friendships/result.html') %>");
+
+
+$('.message .close').on('click', function() {
+  $(this).closest('.message').transition('fade');
+});

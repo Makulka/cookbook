@@ -19,4 +19,16 @@ class User < ApplicationRecord
     def has_not_this_recipe?(recipe_id)
         user_recipes.where(recipe_id: recipe_id).count < 1
     end
+    
+    def self.search(param, ignore_user)
+        param.strip.downcase!
+        User.where('first_name LIKE ?', "%#{param}%")
+            .or(User.where('last_name LIKE ?', "%#{param}%"))
+            .or(User.where('email LIKE ?', "%#{param}%"))
+            .where.not(id: ignore_user.id)
+    end
+    
+    def not_friends_with?(friend_id)
+        friendships.where(friend_id: friend_id).count < 1
+    end
 end
