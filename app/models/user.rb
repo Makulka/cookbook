@@ -2,6 +2,9 @@ class User < ApplicationRecord
     has_many :user_recipes
     has_many :recipes, through: :user_recipes
     
+    has_many :friendships
+    has_many :friends, through: :friendships
+    
     before_save { self.email = email.downcase}
     
     validates :username, presence: true, uniqueness: { case_sensitive: false }, 

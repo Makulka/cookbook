@@ -2,11 +2,14 @@ class Recipe < ApplicationRecord
     has_many :user_recipes
     has_many :users, through: :user_recipes
     
+    has_many :recipe_categories
+    has_many :categories, through: :recipe_categories
+    
     validates :title, presence: true, length: {minimum: 3, maximum: 50}
     validates :description, presence: true, length: {minimum: 3, maximum: 300}
     validates :creator_id, presence: true
-    #validates :steps, presence: true, unless: ->(recipe){recipe.link.present?}
-    #validates :link, presence: true, unless: ->(recipe){recipe.steps.present?}
+    validates :steps, presence: true
+    validates :ingredients, presence: true
     
     def self.search(param)
         param.strip.downcase!
@@ -16,4 +19,8 @@ class Recipe < ApplicationRecord
             .or(Recipe.where('ingredients LIKE ?', "%#{param}%"))
     end
     
+    def self.find_created_recipes(current_user_id)
+        Recipe.where(creator_id: current_user_id)
+    end
 end
+

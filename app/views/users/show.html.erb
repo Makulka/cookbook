@@ -1,24 +1,44 @@
-<div class="ui card">
-    <div class="content">
-        <div class="header">Your details</div>
-            <div class="content">
-                <strong>Name: </strong><%= @user.username%></span>
+<div class="margin-bottom-50">
+    <div class="ui card ">
+        <div class="content">
+            <div class="header">Profile</div>
+                <div class="content">
+                    <strong>Name: </strong><%= @user.username%></span>
+                </div>
+                <div class="content">
+                    <strong>Email: </strong><%= @user.email%></span>
+                </div>
             </div>
-            <div class="content">
-                <strong>Email: </strong><%= @user.email%></span>
+            <div class="extra content">
+                <%= link_to "Edit profile", edit_user_path(@user), class: "ui olive submit button" %>
             </div>
-        </div>
-        <div class="extra content">
-            <%= link_to "Edit your details", edit_user_path(@user), class: "ui orange submit button" %>
         </div>
     </div>
 </div>
 
-<h1 class="ui container"> My recipes</h1>
-<% if @user.recipes.count > 0 %>
-    <%= render "recipes/recipe", obj: @user.recipes %>
-<% else %>
-    You dont have any recipes
-<% end %>
+<div class="ui container"> 
+
+    <div class="margin-bottom-50">
+        <div class="ui header large olive "> My favourited recipes </div>
+        <% if @user.recipes.count > 0 %>
+            <%= render "recipes/recipe", obj: @user.recipes %>
+        <% else %>
+            <div class="header">
+                You dont have any saved recipes
+            </div>
+        <% end %>
+    </div>
+    
+    <div class="ui header large olive "> My recipes </div>
+    <% if @recipes.count > 0 %>
+        <%= render "recipes/recipe", obj: @recipes %>
+    <% else %>
+        <div class="header">
+            You have not created any recipes
+        </div>
+    <% end %>
+    
+    
+</div>
    
         

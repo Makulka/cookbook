@@ -1,2 +1,7 @@
  /* global $ */
 $('#results').html("<%= j (render 'user_recipes/result.html') %>");
+
+
+$('.message .close').on('click', function() {
+  $(this).closest('.message').transition('fade');
+});

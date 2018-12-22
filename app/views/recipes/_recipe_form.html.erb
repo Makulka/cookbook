@@ -6,45 +6,49 @@
     
         <div class="field">
             <%= f.label :title, "Title" %>
-            <div class="ui left icon input">
-                <%= f.text_field :title, placeholder: "Title", autofocus: true %>
-                <i class="user icon"></i>
+            <div class="ui input">
+                <%= f.text_field :title, placeholder: "Min 3, max 50 characters", autofocus: true %>
             </div>
         </div>
         
         <div class="field">
             <%= f.label :description, "Description" %>
-            <div class="ui left icon input">
-                <%= f.text_field :description, placeholder: "Description" %>
-                <i class="user icon"></i>
+            <div class="ui input">
+                <%= f.text_field :description, placeholder: "Min 3, max 300 characters" %>
             </div>
         </div>
         
         <div class="field">
             <%= f.label :ingredients, "Ingredients" %>
-            <div class="ui left icon input">
-                <%= f.text_field :ingredients, placeholder: "Ingredients" %>
-                <i class="user icon"></i>
+            <div class="ui input">
+                <%= f.text_area :ingredients, row: 10 %>
             </div>
         </div>
         
         <div class="field">
-            <%= f.label :steps, "Steps" %>
-            <div class="ui left icon input">
-                <%= f.text_field :steps, placeholder: "Steps" %>
-                <i class="user icon"></i>
+            <%= f.label :steps, "Method" %>
+            <div class="ui input">
+                <%= f.text_area :steps, row: 10 %>
             </div>
         </div>
         
         <div class="field">
-            <%= f.label :link, "Link" %>
-            <div class="ui left icon input">
-                <%= f.text_field :link, placeholder: "Link" %>
-                <i class="user icon"></i>
+            <%= f.label :link, "Web link" %>
+            <div class="ui input">
+                <%= f.text_field :link, placeholder: "if any" %>
+            </div>
+        </div>
+        
+        <div class="inline fields">
+            <label for="category">Select one or more categories:</label>
+            <div class="field">
+                <%= f.collection_check_boxes :category_ids, Category.all.sort_by(&:name), :id, :name do |cb| %>
+                    <% cb.label(class: "left-padding") {cb.check_box(class: "check-box-margin") + cb.text} %>
+                <% end %>
             </div>
         </div>
         
         
-        <%= f.submit(@recipe.new_record? ? "Create" : "Edit", class: "ui orange submit button") %>
+        <%= f.submit(@recipe.new_record? ? "Create" : "Edit", class: "ui olive submit button") %>
     <% end %>
 </div>

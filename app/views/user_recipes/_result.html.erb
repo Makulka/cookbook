@@ -5,29 +5,35 @@
 <% end %>
 
 <% if @recipes && @recipes.size > 0 %>
-    
-        <table>
-            <tbody>
-                <% @recipes.each do |recipe| %>
-                    <tr>
-                        <td><strong>Title:</strong> <%= recipe.title %></td>
-                        <td><strong>Description:</strong> <%= recipe.description %></td>
-                        <td><%= link_to "View Recipe", recipe_path(recipe), class: "ui green button" %><td>
-                       
-                        <% if logged_in? && recipe.creator_id == current_user.id %>
-                            <td><%= link_to "Edit", edit_recipe_path(recipe), class: "ui blue button" %></td>
-                        <% end %>
-                        
-                        <% if current_user.has_not_this_recipe?(recipe.id)%>
-                            <td><%= link_to "Add", user_recipes_path(user: current_user, recipe: recipe), class: "ui blue button", method: :post %></td>
-                        <% else %>
-                            <td>this recipe has been added<td>
-                        <% end %>
-                        
-                        </td> 
-                    </tr>
-                <% end %>
-            </tbody>
-        </table>
-    
+  <table class="ui celled olive table">
+    <thead>
+      <tr>
+        <th class="two wide">Title</th>
+        <th class="six wide">Description</th>
+        <th class="three wide">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @recipes.each do |recipe| %>
+        <tr>
+          <td><%= recipe.title %></td>
+          <td><%= recipe.description %></td>
+          <td>
+            <%= link_to "View", recipe_path(recipe), class: "ui olive button" %>
+            <% if logged_in? && recipe.creator_id == current_user.id %>
+              <%= link_to "Edit", edit_recipe_path(recipe), class: "ui blue button" %>
+            <% end %>
+            <% if logged_in? && current_user.has_not_this_recipe?(recipe.id)%>
+              <%= link_to "Add", user_recipes_path(user: current_user, recipe: recipe), class: "ui blue button", method: :post %>
+            <% else %>
+              <%= link_to "Remove", user_recipe_path(recipe), method: :delete,
+                    data: { confirm: "Are you sure you want to remove this recipe from your favourites?"}, class: "ui orange button" %>
+            <% end %>
+          </td> 
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %> 
+
+

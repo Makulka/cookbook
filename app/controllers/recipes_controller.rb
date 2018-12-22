@@ -1,6 +1,8 @@
 class RecipesController < ApplicationController
     
-   before_action :find_recipe, only: [:show]
+   before_action :find_recipe, only: [:show, :edit, :update]
+   before_action :require_creator_or_admin, only: [:edit, :update]
+   before_action :require_user, only: [:new, :create]
    
     def index
         @recipes = Recipe.all
@@ -21,7 +23,7 @@ class RecipesController < ApplicationController
         @recipe = Recipe.new(recipe_params)
         @recipe.creator_id = current_user.id
         if @recipe.save
-            @user_recipe = UserRecipe.create(user: current_user, recipe: @recipe )
+            #@user_recipe = UserRecipe.create(user: current_user, recipe: @recipe )
             flash[:success] = "Your recipe was created"
             redirect_to recipe_path(@recipe)
         else
@@ -29,18 +31,21 @@ class RecipesController < ApplicationController
         end
     end
     
-    # def destroy
-    #     @article.destroy
-    #     flash[:danger] = "Article was successfully deleted"
-    #     redirect_to articles_path
-    # end
-    
+    def update
+        if @recipe.update(recipe_params)
+            flash[:success] = "Recipe was successfully edited"
+            redirect_to recipe_path(@recipe)
+        else
+            render "edit"
+        end
+    end
+   
     def search
         if params[:search_param].blank?
-          flash.now[:danger] = "You have entered an empty search string"
+          flash.now[:danger] = "Oops, we did could find nothing. Try searching for something"
         else
           @recipes = Recipe.search(params[:search_param])
-          flash.now[:danger] = "No users match this search criteria" if @recipes.blank?
+          flash.now[:danger] = "No recipe with your search criteria was found" if @recipes.blank?
         end
         respond_to do |format|
           format.js { render partial: 'user_recipes/result' }
@@ -50,10 +55,20 @@ class RecipesController < ApplicationController
     private
     
     def recipe_params
-        params.require(:recipe).permit(:title, :description, :creator_id)
+        params.require(:recipe).permit(:title, :description, :ingredients, :steps, :link, :creator_id, category_ids: [])
     end
     
     def find_recipe
         @recipe = Recipe.find(params[:id])
     end
+    
+    def require_creator_or_admin
+        if @recipe.creator_id != current_user.id and !current_user.admin?
+            flash[:danger] = "Sorry, you cannot perform this action as you did not create this recipe"
+            redirect_to root_path
+        end
+    end
+    
 end
+
+

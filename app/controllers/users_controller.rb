@@ -1,12 +1,15 @@
 class UsersController < ApplicationController
     
     before_action :find_user, only: [:show, :edit, :update, :destroy]
-    #before_action :require_same_user_or_admin, only: [:edit, :update]
+    before_action :logged_in_redirect, only: [:new, :create]
+    before_action :require_user, except: [:new, :create]
+    before_action :require_same_user_or_admin, only: [:edit, :update, :destroy]
     
     def index
     end
     
     def show
+        @recipes = Recipe.find_created_recipes(@user.id)
     end
     
     def edit
@@ -19,7 +22,7 @@ class UsersController < ApplicationController
             flash[:success] = "Wellcome to the Cookbook #{@user.username}"
             redirect_to user_path(@user)
         else
-            render "home/index"
+            render "/home/index"
         end
     end
     
@@ -50,10 +53,12 @@ class UsersController < ApplicationController
         @user = User.find(params[:id])
     end
     
-    # def require_same_user
-    #     if current_user != @user and !current_user.admin?
-    #         flash[:danger] = "You can only edit your own account"
-    #         redirect_to root_path
-    #     end
-    # end
+    def require_same_user_or_admin
+        if current_user != @user and !current_user.admin?
+            flash[:danger] = "Sorry, you cannot perform this action"
+            redirect_to root_path
+        end
+    end
+    
+    
 end

@@ -1,5 +1,5 @@
-<div>
-    <div class="ui small inverted menu">
+<div class="margin-bottom-50">
+    <div class="ui olive inverted menu" >
         <div class="ui container">
             <%= link_to "Cookbook", root_path, class: "item" %>
             <% if logged_in? %>
@@ -13,7 +13,13 @@
                     </div>
                 </div>
             <% else %>
-                <%= link_to "Recipes", recipes_path, class: "item" %>
+                <div class="ui dropdown item">
+                    Recipes <i class="dropdown icon"></i>
+                    <div class="menu">
+                        <%= link_to "All recipes", recipes_path, class: "item" %>
+                        <%= link_to "Search recipes", new_user_recipe_path, class: "item" %>
+                    </div>
+                </div>
             <% end %>
             
             
