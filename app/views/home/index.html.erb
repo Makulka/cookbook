@@ -3,8 +3,10 @@
     Wellcome to Cookbook
 </div>
 
-<div class="ui center aligned large header">
-     Cooking social media where you can create, store and share recipes with your friends.
+<div class="margin-bottom-50">
+    <div class="ui center aligned large header">
+         Cooking social media where you can create, store and share recipes with your friends.
+    </div>
 </div>
 
 <% if !logged_in? %>
@@ -30,26 +32,38 @@
         <div class="ui two column very relaxed stackable grid">
             
             <div class="column">
-            <div class="ui header center aligned icon">
-                <i class="circular olive coffee icon"></i>
-                <%= link_to "All recipes", recipes_path %>
-            </div>
-            <div class="ui header center aligned icon">
-                <i class="circular olive birthday cake icon"></i>
-                <%= link_to "My recipes", user_path(current_user) %>
-            </div>
-            <div class="ui header center aligned icon">
-                <i class="circular olive bomb icon"></i>
-                <%= link_to "Create a new recipe", new_recipe_path %>
-            </div>
-            <div class="ui header center aligned icon">
-                <i class="circular olive lightbulb icon"></i>
-                <%= link_to "Search recipes", new_user_recipe_path %>
-            </div>
+                <div class="ui header center aligned icon">
+                    <i class="circular olive coffee icon"></i>
+                    <%= link_to "All recipes", recipes_path %>
+                </div>
+                <div class="ui header center aligned icon">
+                    <i class="circular olive birthday cake icon"></i>
+                    <%= link_to "My recipes", user_path(current_user) %>
+                </div>
+                <div class="ui header center aligned icon">
+                    <i class="circular olive bomb icon"></i>
+                    <%= link_to "Create a new recipe", new_recipe_path %>
+                </div>
+                <div class="ui header center aligned icon">
+                    <i class="circular olive lightbulb icon"></i>
+                    <%= link_to "Search recipes", new_user_recipe_path %>
+                </div>
             </div> 
+            
             <div class="column">
-                my friends will come here
-            </div>
+                <div class="ui header center aligned icon">
+                    <i class="circular olive user circle outline icon"></i>
+                    <%= link_to "All users", users_path %>
+                </div>
+                <div class="ui header center aligned icon">
+                    <i class="circular olive smile outline icon"></i>
+                    <%= link_to "My friends", user_path(current_user) %>
+                </div>
+                <div class="ui header center aligned icon">
+                    <i class="circular olive user secret icon"></i>
+                    <%= link_to "Find a new friend", new_friendship_path %>
+                </div>
+            </div> 
             
         </div>
         <div class="ui vertical divider">

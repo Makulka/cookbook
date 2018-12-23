@@ -40,7 +40,7 @@
                 </div>
             <% else %>
                 <div class="header">
-                    You dont have any saved recipes
+                   <i class="beer icon"></i><%= link_to "Click here to find a new yummy recipe", new_user_recipe_path, class: "item" %>
                 </div>
             <% end %>
         </div>
@@ -52,7 +52,7 @@
             </div>
         <% else %>
             <div class="header">
-                You have not created any recipes
+                <i class="birthday cake icon"></i><%= link_to "Click here to create a new recipe", new_recipe_path, class: "item" %>
             </div>
         <% end %>
     </div> 
@@ -63,7 +63,7 @@
             <%= render "users/friend", obj: @friends %>
         <% else %>
             <div class="header">
-                You have not added any friends
+                <i class="user secret icon"></i><%= link_to "Click here to find a new friend", new_friendship_path, class: "item" %>
             </div>
         <% end %>
     </div>
