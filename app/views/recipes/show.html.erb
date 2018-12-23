@@ -8,8 +8,12 @@
 </h2>
 
 <h5 class="ui header">
-  Create by: 
-  <div class="sub header"><%= @creator.username %></div>
+    Create by: 
+    <% if logged_in? %>
+        <div class="sub header"><%= link_to "#{@creator.username}", user_path(@creator) %></div>
+    <% else %>
+        <div class="sub header"><%= @creator.username %></div>
+    <% end %>
 </h5>
 
 <% if logged_in? %>

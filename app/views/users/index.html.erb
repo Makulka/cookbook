@@ -23,6 +23,9 @@
                     <strong>Number of favourited recipes: </strong><%= user.recipes.count%>
                 </div>
                 <div class="content">
+                    <strong>Number of created recipes: </strong><%= user.count_created_recipes(user.id)%>
+                </div>
+                <div class="content">
                     <strong>Number of friends: </strong><%= user.friends.count%>
                 </div>
             </div>

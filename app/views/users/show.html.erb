@@ -6,7 +6,19 @@
                     <strong>Name: </strong><%= @user.username%></span>
                 </div>
                 <div class="content">
+                    <strong>Name: </strong><%= @user.first_name if @user.first_name %> <%= @user.last_name if @user.last_name %>
+                </div>
+                <div class="content">
                     <strong>Email: </strong><%= @user.email%></span>
+                </div>
+                <div class="content">
+                    <strong>Number of favourited recipes: </strong><%= @user.recipes.count%>
+                </div>
+                <div class="content">
+                    <strong>Number of created recipes: </strong><%= @user.count_created_recipes(@user.id)%>
+                </div>
+                <div class="content">
+                    <strong>Number of friends: </strong><%= @user.friends.count%>
                 </div>
             </div>
             <div class="extra content">

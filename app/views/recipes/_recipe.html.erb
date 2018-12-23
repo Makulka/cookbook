@@ -6,7 +6,11 @@
                 <%= recipe.title %>
             </div>
             <div class="meta">
-                Created by: <%= User.find(recipe.creator_id).username %>
+                <% if recipe.creator_id == current_user.id %>
+                    Created by: You <i class="smile olive icon"></i>  
+                <% else %>
+                    Created by: <%= User.find(recipe.creator_id).username %>
+                <% end %>
             </div>
             <div class="meta">
                Last updated: <%= time_ago_in_words(recipe.updated_at) %> ago
@@ -18,16 +22,17 @@
         
         <div class="extra content">
             <div class="ui three buttons">
-                <%= link_to "View", recipe_path(recipe), class: "tiny ui olive button" %>
-                <% if logged_in? && recipe.creator_id == current_user.id %>
-                    <%= link_to "Edit", edit_recipe_path(recipe), class: "tiny ui violet button" %>
-                <% end %>
-                <% if logged_in? && !current_user.has_not_this_recipe?(recipe.id)%>
-                    <%= link_to "Remove", user_recipe_path(recipe), method: :delete,
-                        data: { confirm: "Are you sure you want to remove this recipe from your list?"}, class: "tiny ui orange button" %>
-                <% end %>
-                <% if current_user.has_not_this_recipe?(recipe.id)%>
-                    <%= link_to "Add", user_recipes_path(user: current_user, recipe: recipe), method: :post, class: "tiny ui yellow button" %>
+                <%= link_to "View", recipe_path(recipe), class: "ui basic olive button" %>
+                <% if logged_in? %>
+                    <% if recipe.creator_id == current_user.id %>
+                        <%= link_to "Edit", edit_recipe_path(recipe), class: "ui basic violet button" %>
+                    <% end %>
+                    <% if !current_user.has_not_this_recipe?(recipe.id)%>
+                        <%= link_to "Remove", user_recipe_path(recipe), method: :delete,
+                            data: { confirm: "Are you sure you want to remove this recipe from your list?"}, class: "ui basic orange button" %>
+                    <% else %>
+                        <%= link_to "Add", user_recipes_path(user: current_user, recipe: recipe), method: :post, class: "ui basic yellow button" %>
+                    <% end %>
                 <% end %>
             </div>
         </div>

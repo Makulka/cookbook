@@ -18,9 +18,6 @@ class Recipe < ApplicationRecord
             .or(Recipe.where('steps LIKE ?', "%#{param}%"))
             .or(Recipe.where('ingredients LIKE ?', "%#{param}%"))
     end
-    
-    def self.find_created_recipes(current_user_id)
-        Recipe.where(creator_id: current_user_id)
-    end
+   
 end
 

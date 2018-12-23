@@ -20,14 +20,16 @@
           <td><%= recipe.description %></td>
           <td>
             <%= link_to "View", recipe_path(recipe), class: "ui olive button" %>
-            <% if logged_in? && recipe.creator_id == current_user.id %>
-              <%= link_to "Edit", edit_recipe_path(recipe), class: "ui blue button" %>
-            <% end %>
-            <% if logged_in? && current_user.has_not_this_recipe?(recipe.id)%>
-              <%= link_to "Add", user_recipes_path(user: current_user, recipe: recipe), class: "ui blue button", method: :post %>
-            <% else %>
-              <%= link_to "Remove", user_recipe_path(recipe), method: :delete,
-                    data: { confirm: "Are you sure you want to remove this recipe from your favourites?"}, class: "ui orange button" %>
+            <% if logged_in? %>
+              <% if recipe.creator_id == current_user.id %>
+                <%= link_to "Edit", edit_recipe_path(recipe), class: "ui blue button" %>
+              <% end %>
+              <% if current_user.has_not_this_recipe?(recipe.id) %>
+                <%= link_to "Add", user_recipes_path(user: current_user, recipe: recipe), class: "ui blue button", method: :post %>
+              <% else %>
+                <%= link_to "Remove", user_recipe_path(recipe), method: :delete,
+                      data: { confirm: "Are you sure you want to remove this recipe from your favourites?"}, class: "ui orange button" %>
+              <% end %>
             <% end %>
           </td> 
         </tr>

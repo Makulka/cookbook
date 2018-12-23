@@ -31,4 +31,12 @@ class User < ApplicationRecord
     def not_friends_with?(friend_id)
         friendships.where(friend_id: friend_id).count < 1
     end
+    
+    def self.find_created_recipes(current_user_id)
+        Recipe.where(creator_id: current_user_id)
+    end
+    
+    def count_created_recipes(user_id)
+        Recipe.where(creator_id: user_id).count
+    end
 end

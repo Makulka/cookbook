@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     end
     
     def show
-        @recipes = Recipe.find_created_recipes(@user.id)
+        @recipes = User.find_created_recipes(@user.id)
         @friends = @user.friends
     end
     

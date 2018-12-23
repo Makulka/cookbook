@@ -7,13 +7,13 @@ Rails.application.routes.draw do
   post "login", to: "sessions#create"
   delete "logout", to: "sessions#destroy"
   
-  resources :recipes
+  resources :recipes, except: [:destroy]
   
-  resources :user_recipes, except: [:edit, :update]
+  resources :user_recipes, only: [:new, :create, :destroy]
   
   get "search_recipes", to: "recipes#search"
   
-  resources :friendships, except: [:edit, :update]
+  resources :friendships, only: [:new, :create, :destroy]
   
   get "search_friends", to: "users#search"
   
