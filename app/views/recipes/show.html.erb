@@ -10,7 +10,11 @@
 <h5 class="ui header">
     Create by: 
     <% if logged_in? %>
-        <div class="sub header"><%= link_to "#{@creator.username}", user_path(@creator) %></div>
+        <% if @recipe.creator_id == current_user.id %>
+            You <i class="smile olive icon"></i>  
+        <% else %>
+            <div class="sub header"><%= link_to "#{@creator.username}", user_path(@creator) %></div>
+        <% end %>
     <% else %>
         <div class="sub header"><%= @creator.username %></div>
     <% end %>
