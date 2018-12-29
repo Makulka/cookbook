@@ -50,3 +50,36 @@ main {
 .height-250 {
     height: 250px;
 }
+
+#vertical-divider {
+    @media (max-width: 767px) {
+        display: none;
+    }
+}
+
+#horizontal-divider {
+    display: none;
+    @media (max-width: 767px) {
+        display: table;
+    }
+}
+
+#dropdown-desktop .item {
+    display: inline-block;
+    @media (max-width: 767px) {
+        display: flex;
+    }
+}
+
+#user-edit-desktop {
+    @media (max-width: 767px) {
+        display: none;
+    }
+}
+
+#user-edit-mobile{
+    display: none;
+    @media (max-width: 767px) {
+        display: block;
+    }
+}

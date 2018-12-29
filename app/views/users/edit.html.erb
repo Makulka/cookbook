@@ -3,10 +3,11 @@
     Edit your profile
 </h2>
 
-<div class="ui two column centered grid">
-    <div class="column"></div>
-        <div class="three column centered row">
-            <%= render "users/users_form" %>
-        </div>
-    </div>
+<div class="ui two column centered grid" id="user-edit-desktop">
+    <%= render "users/users_form" %>
 </div>
+<div class="twelve column centered row" id="user-edit-mobile">
+    <%= render "users/users_form" %>
+</div>
+  
+

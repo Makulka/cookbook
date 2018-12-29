@@ -17,19 +17,23 @@
     <%= render "shared/errors", obj: @user %>
 
     <div class="ui placeholder segment">
-        <div class="ui two column very relaxed stackable grid">
+        <div class="ui stackable two column very relaxed grid container">
             
             <%= render "sessions/login_form" %>
+            
+            <div class="ui vertical divider" id="vertical-divider">
+                Or
+            </div>
+
             <%= render "users/users_form" %>
             
         </div>
-        <div class="ui vertical divider">
-            Or
-        </div>
+        
     </div>
 <% else %>
     <div class="ui placeholder segment">
-        <div class="ui two column very relaxed stackable grid">
+        <div class="ui stackable two column very relaxed grid container">
+            
             
             <div class="column">
                 <div class="ui header center aligned icon">
@@ -50,6 +54,10 @@
                 </div>
             </div> 
             
+            <div class="ui vertical divider" id="vertical-divider">
+                Or
+            </div>
+            
             <div class="column">
                 <div class="ui header center aligned icon">
                     <i class="circular olive user circle outline icon"></i>
@@ -66,9 +74,7 @@
             </div> 
             
         </div>
-        <div class="ui vertical divider">
-            Or
-        </div>
+        
     </div>
     
     

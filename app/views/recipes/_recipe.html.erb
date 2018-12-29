@@ -6,7 +6,7 @@
                 <%= recipe.title %>
             </div>
             <div class="meta">
-                <% if recipe.creator_id == current_user.id %>
+                <% if logged_in? && recipe.creator_id == current_user.id %>
                     Created by: You <i class="smile olive icon"></i>  
                 <% else %>
                     Created by: <%= User.find(recipe.creator_id).username %>

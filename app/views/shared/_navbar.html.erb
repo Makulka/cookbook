@@ -3,21 +3,23 @@
         <div class="ui container">
             <%= link_to "Cookbook", root_path, class: "item" %>
             <% if logged_in? %>
-                <div class="ui dropdown item">
-                    Recipes <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <%= link_to "All recipes", recipes_path, class: "item" %>
-                        <%= link_to "My recipes", user_path(current_user), class: "item" %>
-                        <%= link_to "Create a new recipe", new_recipe_path, class: "item" %>
-                        <%= link_to "Search recipes", new_user_recipe_path, class: "item" %>
+                <div id="dropdown-desktop">
+                    <div class="ui dropdown item">
+                        Recipes <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <%= link_to "All recipes", recipes_path, class: "item" %>
+                            <%= link_to "My recipes", user_path(current_user), class: "item" %>
+                            <%= link_to "Create a new recipe", new_recipe_path, class: "item" %>
+                            <%= link_to "Search recipes", new_user_recipe_path, class: "item" %>
+                        </div>
                     </div>
-                </div>
-                <div class="ui dropdown item">
-                    Friends <i class="dropdown icon"></i>
-                    <div class="menu">
-                        <%= link_to "All users", users_path, class: "item" %>
-                        <%= link_to "My friends", user_path(current_user), class: "item" %>
-                        <%= link_to "Find a new friend", new_friendship_path, class: "item" %>
+                    <div class="ui dropdown item">
+                        Friends <i class="dropdown icon"></i>
+                        <div class="menu">
+                            <%= link_to "All users", users_path, class: "item" %>
+                            <%= link_to "My friends", user_path(current_user), class: "item" %>
+                            <%= link_to "Find a new friend", new_friendship_path, class: "item" %>
+                        </div>
                     </div>
                 </div>
             <% else %>
@@ -32,17 +34,11 @@
             
             
             <div class="right menu">
-                <% if logged_in? %>
-                    <div class="item">
-                        You are logged in as <%= current_user.username %>
-                    </div>
-                <% end %>
-                
                 <div class="ui dropdown item">
                     Account <i class="dropdown icon"></i>
                     <div class="menu">
                         <% if logged_in? %>
-                            <%= link_to "Profile", user_path(current_user), class: "item" %>
+                            <%= link_to current_user.username, user_path(current_user), class: "item" %>
                             <%= link_to "Edit profile", edit_user_path(current_user), class: "item" %>
                             <%= link_to "Log out", logout_path, method: :delete, class: "item" %>
                         <% else %>
