@@ -21,9 +21,11 @@
                     <strong>Number of friends: </strong><%= @user.friends.count%>
                 </div>
             </div>
-            <div class="extra content">
-                <%= link_to "Edit profile", edit_user_path(@user), class: "ui olive submit button" %>
-            </div>
+            <% if @user == current_user %>
+                <div class="extra content">
+                    <%= link_to "Edit profile", edit_user_path(@user), class: "ui olive submit button" %>
+                </div>
+            <% end %>
         </div>
     </div>
 </div>
