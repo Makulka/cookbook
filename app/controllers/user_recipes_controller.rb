@@ -3,6 +3,7 @@ class UserRecipesController < ApplicationController
     before_action :require_user, only: [:create, :destroy]
     
     def new
+        @categories = Category.all
     end
     
     def create

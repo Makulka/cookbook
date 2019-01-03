@@ -19,4 +19,6 @@ Rails.application.routes.draw do
   
   get "my_friends", to: "users#my_friends"
   get "my_recipes", to: "users#my_recipes"
+  
+  resources :categories, only: [:show]
 end

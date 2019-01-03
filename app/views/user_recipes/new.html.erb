@@ -3,11 +3,15 @@
    Search Recipes
 </h1>
 
+<h2>
+    By using a keyword
+</h2>
+
 <div class="margin-bottom-50 width-70">
     <%= form_tag search_recipes_path, remote: true, method: :get, id: 'search' do %>
         <div class="ui fluid action input">
             
-            <%= text_field_tag :search_param, params[:search_param], placeholder: "Search for recipes", autofocus: true %>
+            <%= text_field_tag :search_param, params[:search_param], placeholder: "Type in a keyword", autofocus: true %>
         
             <%= button_tag(type: :submit, class: "ui olive button") do %>
                 Search
@@ -20,5 +24,23 @@
 <div id="results">
     <%= render "result" %>
 </div>
+
+<h2>
+    By choosing a category
+</h2>
+
+<div class="ui fluid search selection dropdown">
+    <input type="hidden" name="category">
+    <i class="dropdown icon"></i>
+    <div class="default text">Select Category</div>
+    <div class="menu">
+        <% @categories.each do |category| %>
+            <%= link_to category.name, category_path(category), class: "item"  %>
+        <% end %>
+    </div>
+</div>    
+
+
+
     
     

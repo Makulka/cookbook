@@ -1,0 +1,13 @@
+<div class="ui header large olive ">Recipes in category: <%= @category.name %></div>
+    <% if @category_recipes.count > 0 %>
+        <div class="ui cards">
+            <%= render "recipes/recipe", obj: @category_recipes %>
+        </div>
+    <% else %>
+        <div class="header">
+            <i class="birthday cake icon"></i>
+            <div class="item">
+                There are not any recipes stored in this category yet.
+        </div>
+    <% end %>
+</div> 
