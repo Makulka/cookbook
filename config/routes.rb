@@ -21,4 +21,10 @@ Rails.application.routes.draw do
   get "my_recipes", to: "users#my_recipes"
   
   resources :categories, only: [:show]
+  
+  get "chatroom", to: "chatroom#index"
+  
+  post "message", to: "messages#create"
+  
+  mount ActionCable.server, at: "/cable"
 end

@@ -5,6 +5,8 @@ class User < ApplicationRecord
     has_many :friendships
     has_many :friends, through: :friendships
     
+    has_many :messages
+    
     before_save { self.email = email.downcase}
     
     validates :username, presence: true, uniqueness: { case_sensitive: false }, 

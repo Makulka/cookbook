@@ -56,6 +56,10 @@
             
             <div class="column">
                 <div class="ui header center aligned icon">
+                    <i class="circular olive user secret icon"></i>
+                    <%= link_to "Chatroom", chatroom_path %>
+                </div>
+                <div class="ui header center aligned icon">
                     <i class="circular olive user circle outline icon"></i>
                     <%= link_to "All users", users_path %>
                 </div>
@@ -64,7 +68,7 @@
                     <%= link_to "My friends", user_path(current_user) %>
                 </div>
                 <div class="ui header center aligned icon">
-                    <i class="circular olive user secret icon"></i>
+                    <i class="circular olive user plus icon"></i>
                     <%= link_to "Find a new friend", new_friendship_path %>
                 </div>
             </div> 
