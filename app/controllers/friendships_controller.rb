@@ -9,7 +9,7 @@ class FriendshipsController < ApplicationController
         @friend = User.find(params[:friend])
         current_user.friendships.build(friend_id: @friend.id)
         if current_user.save
-            flash[:success] = "Freind was successfully added"
+            flash[:success] = "Friend was successfully added"
         else
             flash[:danger] = "There was something wrong with the friend request"
         end  
