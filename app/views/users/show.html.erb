@@ -28,6 +28,11 @@
             <% if @user == current_user %>
                 <div class="extra content">
                     <%= link_to "Edit profile", edit_user_path(@user), class: "ui olive submit button" %>
+                    <%= link_to "Add friend", new_friendship_path, class: "ui olive submit button" %>
+                </div>
+                <div class="extra content">
+                    <%= link_to "New recipe", new_recipe_path, class: "ui olive submit button" %>
+                    <%= link_to "Search recipes", new_user_recipe_path, class: "ui olive submit button" %>
                 </div>
             <% end %>
         </div>
