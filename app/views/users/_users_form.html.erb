@@ -1,5 +1,5 @@
 <div class="column">
-    <%= form_for(@user, :html => {class: "ui form", role: "form"}) do |f| %>
+    <%= form_for(@user, :html => { multipart: true, class: "ui form", role: "form"}) do |f| %>
         <div class="field">
             <%= f.label :username, "Username" %>
             <div class="ui left icon input">
@@ -26,7 +26,7 @@
         
         <div class="field">
             <%= f.label :email, "Email" %>
-            <div class="ui left icon input">
+            <div class="ui left icon input"> 
                 <%= f.email_field :email, placeholder: "Required" %>
                 <i class="beer icon"></i>
             </div>
@@ -39,6 +39,12 @@
                 <i class="lock icon"></i>
             </div>
         </div>
+        
+         <div class="field">
+            <%= f.label :profile_picture %>
+            <%= f.file_field :profile_picture, accept: 'image/jpeg,image/gif,image/png' %>
+        </div>
+        
         <%= f.submit(@user.new_record? ? "Sign up" : "Edit account", class: "ui olive submit button") %>
     <% end %>
     

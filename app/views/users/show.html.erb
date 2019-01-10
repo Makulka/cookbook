@@ -3,6 +3,9 @@
         <div class="content">
             <div class="header">Profile</div>
                 <div class="content">
+                    <%= image_tag(@user.profile_picture, width: 250) if @user.profile_picture.attached? %> 
+                </div>
+                <div class="content">
                     <strong>Name: </strong><%= @user.username%></span>
                 </div>
                 <div class="content">
@@ -20,6 +23,7 @@
                 <div class="content">
                     <strong>Number of friends: </strong><%= @user.friends.count%>
                 </div>
+                
             </div>
             <% if @user == current_user %>
                 <div class="extra content">
