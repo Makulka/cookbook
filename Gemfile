@@ -30,6 +30,7 @@ gem 'redis', '~> 4.0'
 gem 'bcrypt', '~> 3.1.7'
 
 gem "google-cloud-storage", "~> 1.8", require: false
+gem 'carrierwave', '~> 1.0'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

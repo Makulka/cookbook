@@ -42,7 +42,7 @@
         
          <div class="field">
             <%= f.label :profile_picture %>
-            <%= f.file_field :profile_picture, accept: 'image/jpeg,image/gif,image/png' %>
+            <%= f.file_field :profile_picture, onchange: "validateFiles(this);", data: { max_file_size: 2.megabytes } %>
         </div>
         
         <%= f.submit(@user.new_record? ? "Sign up" : "Edit account", class: "ui olive submit button") %>
