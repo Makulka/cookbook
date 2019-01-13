@@ -71,16 +71,9 @@ main {
     }
 }
 
-#user-edit-desktop {
-    @media (max-width: 767px) {
-        display: none;
-    }
-}
-
-#user-edit-mobile{
-    display: none;
-    @media (max-width: 767px) {
-        display: block;
+#user-form{
+    @media (min-width: 767px) {
+        margin: 0 150px;
     }
 }
 
@@ -97,4 +90,5 @@ main {
     border: none;
     padding: 0;
     margin-bottom: 10px;
+    width: auto;
 }
