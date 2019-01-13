@@ -34,7 +34,7 @@ scroll_bottom = function() {
 // };
 
 function validateFiles(inputFile) {
-  var maxExceededMessage = "This file exceeds the maximum allowed file size (5 MB)";
+  var maxExceededMessage = "This file exceeds the maximum allowed file size (2 MB)";
   var extErrorMessage = "Only image file with extension: .jpg, .jpeg, .gif or .png is allowed";
   var allowedExtension = ["jpg", "jpeg", "gif", "png"];
 

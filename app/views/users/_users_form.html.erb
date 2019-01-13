@@ -40,8 +40,8 @@
             </div>
         </div>
         
-         <div class="field">
-            <%= f.label :profile_picture %>
+         <div class="field" id="profile-picture-upload">
+            <%= f.label :profile_picture, "Profile picture (max. 2MB)" %>
             <%= f.file_field :profile_picture, onchange: "validateFiles(this);", data: { max_file_size: 2.megabytes } %>
         </div>
         

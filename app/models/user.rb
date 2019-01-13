@@ -43,4 +43,5 @@ class User < ApplicationRecord
     def count_created_recipes(user_id)
         Recipe.where(creator_id: user_id).count
     end
+    
 end
