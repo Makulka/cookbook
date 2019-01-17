@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
     
-    helper_method :current_user, :logged_in?, :logged_in_redirect
+    helper_method :current_user, :logged_in?, :logged_in_redirect, :owner
     
     def current_user
         @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -23,6 +23,11 @@ class ApplicationController < ActionController::Base
             flash[:error] = "You are already logged in"
             redirect_to user_path(@user) 
         end
+    end
+    
+    
+    def owner(user_id)
+        @user ||= User.find(user_id) 
     end
     
     

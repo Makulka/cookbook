@@ -1,0 +1,7 @@
+<div class="item">
+    <i class="comment olive icon"></i>
+    <div class="content">
+        <%= link_to "#{owner(comment.user_id).username}", user_path(owner(comment.user_id)) %>: 
+        <%= comment.body %>
+    </div>
+</div>
