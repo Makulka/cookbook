@@ -15,6 +15,9 @@
             <div class="meta">
                Last updated: <%= time_ago_in_words(recipe.updated_at) %> ago
             </div>
+            <div class="meta">
+               <%= pluralize(recipe.comments.count, "comments") %> 
+            </div>
             <div class="description">
                 <%= truncate(recipe.description, length: 150) %>
             </div>
