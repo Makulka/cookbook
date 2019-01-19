@@ -66,5 +66,13 @@ $(document).on('turbolinks:load', function() {
   });
   $('select.dropdown').dropdown();
   scroll_bottom();
-  //submit_message();
+  //submit_comment();
 })
+
+submit_comment = function() {
+  $('#comment_body').on('keydown', function(e) {
+      if (e.keyCode == 13) {
+        $('#comment_button').click();
+      };
+  });
+};

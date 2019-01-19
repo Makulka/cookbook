@@ -26,8 +26,8 @@ class ApplicationController < ActionController::Base
     end
     
     
-    def owner(user_id)
-        @user ||= User.find(user_id) 
+    def owner(id)
+        @owner = User.find(id)
     end
     
     

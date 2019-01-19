@@ -78,11 +78,10 @@
 </br>
 
 <h2>Comments</h2>
-<div class="ui large list">
-    <%= render @recipe.comments %>
+<div class="ui large list" id="comments">
+    <%= render "comments/comment" %>
 </div>
 
-</br>
 
 <%= render "comments/form" %>
  

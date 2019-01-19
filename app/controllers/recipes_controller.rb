@@ -5,7 +5,7 @@ class RecipesController < ApplicationController
    before_action :require_user, only: [:new, :create]
    
     def index
-        @recipes = Recipe.all
+        @recipes = Recipe.order(:title)
     end
     
     def show

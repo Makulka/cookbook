@@ -1,7 +1,19 @@
+
+<% @recipe.comments.each do |comment| %>
 <div class="item">
     <i class="comment olive icon"></i>
     <div class="content">
-        <%= link_to "#{owner(comment.user_id).username}", user_path(owner(comment.user_id)) %>: 
-        <%= comment.body %>
+        <%= link_to "#{owner(comment.user_id).username}, #{comment.user_id}", user_path(owner(comment.user_id)) %>: 
+        <%= simple_format(comment.body) %>
+        </br>
     </div>
 </div>
+<% end %>
+
+</br>
+ 
+<% if params[:action] == "create" %>
+  <div>
+    <%= render "shared/flash_messages" %>
+  </div>
+<% end %>

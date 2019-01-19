@@ -1,15 +1,15 @@
 <% if current_user %>
-    <h3>Join the conversation and add a comment</h3>
+    <h3>Add a comment</h3>
     <%= render "shared/flash_messages" %>
             
     <div class="column">
-        <%= form_for([@recipe, @recipe.comments.build], :html => {class: "ui form", role: "form"}) do |f| %>
+        <%= form_for([@recipe, @recipe.comments.build], remote: true, :html => {class: "ui form", role: "form"}) do |f| %>
             <div class="field">
                 <div class="ui input">
                     <%= f.text_area :body, rows: 2 %>
                 </div>
             </div>
-            <%= f.submit(class: "ui olive button") %>
+            <%= f.submit(class: "ui olive button", id: "comment_button") %>
         <% end %>
     </div>
 <% end %>

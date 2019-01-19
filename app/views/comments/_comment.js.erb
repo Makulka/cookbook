@@ -1,7 +1,10 @@
  /* global $ */
-$('#results').html("<%= j (render 'friendships/result.html') %>");
-$('#search_param').val('');
+$('#comments').html("<%= j (render 'comments/comment.html') %>");
+$('#comment_body').val('');
+
 
 $('.message .close').on('click', function() {
   $(this).closest('.message').transition('fade');
 });
+
+
