@@ -17,8 +17,19 @@ class CommentsController < ApplicationController
         end
     end
     
+    def destroy
+        @recipe = Recipe.find(params[:recipe_id])
+        @comment = Comment.find(params[:id])
+        @comment.destroy
+        flash.now[:success] = "Your comment was deleted."
+        #redirect_to @recipe
+        respond_to do |format|
+          format.js { render partial: 'comments/comment' }
+        end
+    end
+    
     private
     def comment_params
-        params.require(:comment).permit(:body) 
+        params.require(:comment).permit(:body, :rating) 
     end
 end

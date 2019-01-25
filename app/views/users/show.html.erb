@@ -6,7 +6,7 @@
                     <%= image_tag(@user.profile_picture, width: 250) if @user.profile_picture.attached? %> 
                 </div>
                 <div class="content">
-                    <strong>Name: </strong><%= @user.username%></span>
+                    <strong>Username: </strong><%= @user.username%></span>
                 </div>
                 <div class="content">
                     <strong>Name: </strong><%= @user.first_name if @user.first_name %> <%= @user.last_name if @user.last_name %>

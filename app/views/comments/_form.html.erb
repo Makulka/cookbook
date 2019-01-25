@@ -4,6 +4,9 @@
             
     <div class="column">
         <%= form_for([@recipe, @recipe.comments.build], remote: true, :html => {class: "ui form", role: "form"}) do |f| %>
+            <div id="rating-form">
+        		<label> Rating </label>
+        	</div>
             <div class="field">
                 <div class="ui input">
                     <%= f.text_area :body, rows: 2 %>
@@ -13,3 +16,10 @@
         <% end %>
     </div>
 <% end %>
+
+<script>
+	$('#rating-form').raty({
+		path: '/assets/',
+		scoreName: 'comment[rating]'
+	});
+</script>

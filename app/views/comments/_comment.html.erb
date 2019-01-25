@@ -4,16 +4,28 @@
     <i class="comment olive icon"></i>
     <div class="content">
         <%= link_to "#{owner(comment.user_id).username}", user_path(owner(comment.user_id)) %>: 
+        <div class="comment-rating" data-score="<%= comment.rating %>"></div>
         <%= simple_format(comment.body) %>
-        </br>
+        <%= link_to "Delete comment", recipe_comment_path(comment.recipe, comment), remote: true, method: :delete, data: { confirm: "Are you sure?" }, class: "ui label", id: "delete-btn" %>
+        
     </div>
 </div>
 <% end %>
 
 </br>
  
-<% if params[:action] == "create" %>
+<% if params[:action] == "create" || params[:action] == "destroy" %>
   <div>
     <%= render "shared/flash_messages" %>
   </div>
 <% end %>
+
+<script>
+	$('.comment-rating').raty({
+		readOnly: true,
+		score: function() {
+			return $(this).attr('data-score');
+		},
+		path: '/assets/'
+	});
+</script>
