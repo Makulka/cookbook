@@ -10,6 +10,11 @@ class RecipesController < ApplicationController
     
     def show
         @creator = User.find(@recipe.creator_id)
+        if @recipe.comments.blank?
+            @average_review = 0
+        else
+            @average_review = @recipe.comments.average(:rating).round(2)
+        end
     end
     
     def new

@@ -13,12 +13,18 @@
         <% if @recipe.creator_id == current_user.id %>
             You <i class="smile olive icon"></i>  
         <% else %>
-            <div class="sub header"><%= link_to "#{@creator.username}", user_path(@creator) %></div>
+            <%= link_to "#{@creator.username}", user_path(@creator) %>
         <% end %>
     <% else %>
-        <div class="sub header"><%= @creator.username %></div>
+        <%= @creator.username %>
     <% end %>
 </h5>
+
+<div class="content">
+    Average rating
+    <div class="average-review-rating" data-score=<%= @average_review %>></div>
+			<span class="number-of-reviews"><em>From: </em><%= @recipe.comments.count %> reviews </span>
+</div>
 
 <% if logged_in? %>
     <div class="ui list">
@@ -90,4 +96,6 @@
         Please log in to enter a comment
     </h3>
 <% end %>
+
+
  

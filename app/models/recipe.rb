@@ -20,6 +20,10 @@ class Recipe < ApplicationRecord
             .or(Recipe.where('steps LIKE ?', "%#{param}%"))
             .or(Recipe.where('ingredients LIKE ?', "%#{param}%"))
     end
+    
+    def avg_rating
+        comments.average(:rating).round(2)
+    end 
    
 end
 

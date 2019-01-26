@@ -18,6 +18,13 @@
             <div class="meta">
                <%= pluralize(recipe.comments.count, "comments") %> 
             </div>
+           <% if recipe.comments.count > 0 %>
+               <div class="meta">
+                    <div class="average-review-rating" data-score=<%= recipe.avg_rating %>></div>
+        	        <span class="number-of-reviews"><em>From: </em><%= recipe.comments.count %> reviews </span>
+        	        <%=  @average_review %>
+    	        </div>
+    	   <% end %>
             <div class="description">
                 <%= truncate(recipe.description, length: 150) %>
             </div>
@@ -42,6 +49,15 @@
         
     </div> 
 <% end %>
+
+<script>
+$('.average-review-rating').raty({
+	readOnly: true,
+	path: '/assets/',
+	score: function() {
+		return $(this).attr('data-score')
+	}
+});
 
 
 

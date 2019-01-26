@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
         if @comment.save
             flash.now[:success] = "Thank you for your comment."
         else 
-            flash.now[:danger] = "Please enter a comment containing 1-300 characters."
+            flash.now[:danger] = "Please rate the recipe and enter a comment containing 1-300 characters."
         end
         #redirect_to @recipe
         respond_to do |format|

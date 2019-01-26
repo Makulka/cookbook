@@ -67,6 +67,14 @@ $(document).on('turbolinks:load', function() {
   $('select.dropdown').dropdown();
   scroll_bottom();
   //submit_comment();
+  
+  $('.average-review-rating').raty({
+		readOnly: true,
+		path: '/assets/',
+		score: function() {
+			return $(this).attr('data-score')
+		}
+	});
 })
 
 submit_comment = function() {
