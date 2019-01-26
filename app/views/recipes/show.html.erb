@@ -83,5 +83,11 @@
 </div>
 
 
-<%= render "comments/form" %>
+<% if current_user %>
+    <%= render "comments/form" %>
+<% else %>
+    <h3 class="ui header">
+        Please log in to enter a comment
+    </h3>
+<% end %>
  

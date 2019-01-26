@@ -1,21 +1,21 @@
-<% if current_user %>
-    <h3>Add a comment</h3>
-    <%= render "shared/flash_messages" %>
-            
-    <div class="column">
-        <%= form_for([@recipe, @recipe.comments.build], remote: true, :html => {class: "ui form", role: "form"}) do |f| %>
-            <div id="rating-form">
-        		<label> Rating </label>
-        	</div>
-            <div class="field">
-                <div class="ui input">
-                    <%= f.text_area :body, rows: 2 %>
-                </div>
+
+<h3>Add a comment</h3>
+<%= render "shared/flash_messages" %>
+        
+<div class="column">
+    <%= form_for([@recipe, @recipe.comments.build], remote: true, :html => {class: "ui form", role: "form"}) do |f| %>
+        <div id="rating-form">
+    		<label> Rating </label>
+    	</div>
+        <div class="field">
+            <div class="ui input">
+                <%= f.text_area :body, rows: 2 %>
             </div>
-            <%= f.submit(class: "ui olive button", id: "comment_button") %>
-        <% end %>
-    </div>
-<% end %>
+        </div>
+        <%= f.submit(class: "ui olive button", id: "comment_button") %>
+    <% end %>
+</div>
+
 
 <script>
 	$('#rating-form').raty({
