@@ -2,6 +2,8 @@ class CommentsController < ApplicationController
     
     before_action :require_user
     before_action :find_recipe
+    before_action :find_comment, only: [:destroy]
+    before_action :require_creator_or_admin, only: [:destroy]
     
     def create
         #@comment = @recipe.comments.build(comment_params) - this cannot be used with validations in the model
@@ -20,8 +22,6 @@ class CommentsController < ApplicationController
     end
     
     def destroy
-        
-        @comment = Comment.find(params[:id])
         @comment.destroy
         flash.now[:success] = "Your comment was deleted."
         #redirect_to @recipe
@@ -37,5 +37,16 @@ class CommentsController < ApplicationController
     
     def find_recipe
         @recipe = Recipe.find(params[:recipe_id])
+    end
+    
+    def find_comment
+        @comment = Comment.find(params[:id])
+    end
+    
+    def require_creator_or_admin
+        if @comment.user_id != current_user.id and !current_user.admin?
+            flash[:danger] = "Sorry, you cannot perform this action as you did not create this comment"
+            redirect_to @recipe
+        end
     end
 end
