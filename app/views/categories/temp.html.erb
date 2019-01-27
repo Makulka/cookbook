@@ -1,31 +1,45 @@
-<% @recipe.comments.each do |comment| %>
-<div class="item">
-    <i class="comment olive icon"></i>
-    <div class="content">
-        <%= link_to "#{owner(comment.user_id).username}", user_path(owner(comment.user_id)) %>: 
-        <div class="comment-rating" data-score="<%= comment.rating %>"></div>
-        <%= simple_format(comment.body) %>
-       
-        <%= link_to "Delete comment", recipe_comment_path(comment.recipe, comment), remote: true, method: :delete, data: { confirm: "Are you sure?" }, class: "ui label", id: "delete-btn" %>
-       
+<div class="margin-bottom-50">
+    <div class="ui card ">
+        <div class="content">
+            <div class="header">Profile</div>
+                <div class="content">
+                    <%= image_tag(@user.profile_picture, width: 250) if @user.profile_picture.attached? %> 
+                </div>
+                <div class="content">
+                    <strong>Username: </strong><%= @user.username%></span>
+                </div>
+                <div class="content">
+                    <strong>Name: </strong>
+                    <% if @user.first_name || @user.last_name %>
+                        <%= @user.first_name if @user.first_name %> <%= @user.last_name if @user.last_name %>
+                    <% else %>
+                        <em>Not provided</em>
+                    <% end %>
+                </div>
+                <div class="content">
+                    <strong>Email: </strong><%= @user.email%></span>
+                </div>
+                <div class="content">
+                    <strong>Number of favourited recipes: </strong><%= @user.recipes.count%>
+                </div>
+                <div class="content">
+                    <strong>Number of created recipes: </strong><%= @user.count_created_recipes(@user.id)%>
+                </div>
+                <div class="content">
+                    <strong>Number of friends: </strong><%= @user.friends.count%>
+                </div>
+                
+            </div>
+            <% if @user == current_user %>
+                <div class="extra content">
+                    <%= link_to "Edit profile", edit_user_path(@user), class: "ui olive submit button" %>
+                    <%= link_to "Add friend", new_friendship_path, class: "ui olive submit button" %>
+                </div>
+                <div class="extra content">
+                    <%= link_to "New recipe", new_recipe_path, class: "ui olive submit button" %>
+                    <%= link_to "Search recipes", new_user_recipe_path, class: "ui olive submit button" %>
+                </div>
+            <% end %>
+        </div>
     </div>
 </div>
-<% end %>
-
-</br>
- 
-<% if params[:action] == "create" || params[:action] == "destroy" %>
-  <div>
-    <%= render "shared/flash_messages" %>
-  </div>
-<% end %>
-
-<script>
-	$('.comment-rating').raty({
-		readOnly: true,
-		score: function() {
-			return $(this).attr('data-score');
-		},
-		path: '/assets/'
-	});
-</script>

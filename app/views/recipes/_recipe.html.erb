@@ -15,18 +15,17 @@
             <div class="meta">
                Last updated: <%= time_ago_in_words(recipe.updated_at) %> ago
             </div>
-            <div class="meta">
-               <%= pluralize(recipe.comments.count, "comments") %> 
-            </div>
-           <% if recipe.comments.count > 0 %>
-               <div class="meta">
+            <% if recipe.comments.count > 0 %>
+                <div class="meta">
                     <div class="average-review-rating" data-score=<%= recipe.avg_rating %>></div>
-        	        <span class="number-of-reviews"><em>From: </em><%= recipe.comments.count %> reviews </span>
-        	        <%=  @average_review %>
-    	        </div>
-    	   <% end %>
+                    <em>From: </em><%= pluralize(recipe.comments.count, "review") %>
+                </div>
+            <% else %>
+                 <div class="average-review-rating" data-score=<% 0 %>></div>
+                <div class="meta"><em>Not rated yet</em></div>
+            <% end %>
             <div class="description">
-                <%= truncate(recipe.description, length: 150) %>
+                <%= truncate(recipe.description, length: 100) %>
             </div>
         </div>
         
@@ -50,14 +49,7 @@
     </div> 
 <% end %>
 
-<script>
-$('.average-review-rating').raty({
-	readOnly: true,
-	path: '/assets/',
-	score: function() {
-		return $(this).attr('data-score')
-	}
-});
+
 
 
 

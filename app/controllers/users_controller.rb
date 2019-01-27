@@ -10,7 +10,8 @@ class UsersController < ApplicationController
     end
     
     def show
-        @recipes = User.find_created_recipes(@user.id)
+        @recipes = User.find_created_recipes(@user.id).order(:title)
+        @favourite_recipes = @user.recipes.order(:title)
         @friends = @user.friends
     end
     

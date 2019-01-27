@@ -1,85 +1,87 @@
 <div class="margin-bottom-50">
     <div class="ui card ">
+        <%= image_tag(@user.profile_picture, width: 290) if @user.profile_picture.attached? %> 
         <div class="content">
-            <div class="header">Profile</div>
-                <div class="content">
-                    <%= image_tag(@user.profile_picture, width: 250) if @user.profile_picture.attached? %> 
-                </div>
-                <div class="content">
-                    <strong>Username: </strong><%= @user.username%></span>
-                </div>
-                <div class="content">
-                    <strong>Name: </strong><%= @user.first_name if @user.first_name %> <%= @user.last_name if @user.last_name %>
-                </div>
-                <div class="content">
-                    <strong>Email: </strong><%= @user.email%></span>
-                </div>
-                <div class="content">
-                    <strong>Number of favourited recipes: </strong><%= @user.recipes.count%>
-                </div>
-                <div class="content">
-                    <strong>Number of created recipes: </strong><%= @user.count_created_recipes(@user.id)%>
-                </div>
-                <div class="content">
-                    <strong>Number of friends: </strong><%= @user.friends.count%>
-                </div>
-                
+            <div class="content">
+                <strong>Username: </strong><%= @user.username%></span>
             </div>
-            <% if @user == current_user %>
-                <div class="extra content">
-                    <%= link_to "Edit profile", edit_user_path(@user), class: "ui olive submit button" %>
-                    <%= link_to "Add friend", new_friendship_path, class: "ui olive submit button" %>
-                </div>
-                <div class="extra content">
-                    <%= link_to "New recipe", new_recipe_path, class: "ui olive submit button" %>
-                    <%= link_to "Search recipes", new_user_recipe_path, class: "ui olive submit button" %>
-                </div>
-            <% end %>
+            <div class="content">
+                <strong>Name: </strong>
+                <% if @user.first_name || @user.last_name %>
+                    <%= @user.first_name if @user.first_name %> <%= @user.last_name if @user.last_name %>
+                <% else %>
+                    <em>Not provided</em>
+                <% end %>
+            </div>
+            <div class="content">
+                <strong>Email: </strong><%= @user.email%></span>
+            </div>
+            <div class="content">
+                <strong>Number of favourited recipes: </strong><%= @user.recipes.count%>
+            </div>
+            <div class="content">
+                <strong>Number of created recipes: </strong><%= @user.count_created_recipes(@user.id)%>
+            </div>
+            <div class="content">
+                <strong>Number of friends: </strong><%= @user.friends.count%>
+            </div>
         </div>
+        
+        <% if @user == current_user %>
+            <div class="extra content">
+                <%= link_to "Edit profile", edit_user_path(@user), class: "ui olive submit button" %>
+                <%= link_to "Add friend", new_friendship_path, class: "ui olive submit button" %>
+            </div>
+            <div class="extra content">
+                <%= link_to "New recipe", new_recipe_path, class: "ui olive submit button" %>
+                <%= link_to "Search recipes", new_user_recipe_path, class: "ui olive submit button" %>
+            </div>
+        <% end %>
     </div>
 </div>
 
 
 <div class="ui container">
-<div class="ui two column stackable grid">
-    <div class="twelve wide column">
-
-    <div class="margin-bottom-50">
-        <div class="ui header large olive "> My favourited recipes </div>
-        <% if @user.recipes.count > 0 %>
-            <div class="ui cards">
-                <%= render "recipes/recipe", obj: @user.recipes %>
+    <div class="ui two column stackable grid">
+        
+        <div class="twelve wide column">
+            <div class="margin-bottom-50">
+                <div class="ui header large olive "> My favourited recipes </div>
+                <% if @user.recipes.count > 0 %>
+                    <div class="ui cards">
+                        <%= render "recipes/recipe", obj: @favourite_recipes %>
+                    </div>
+                <% else %>
+                    <div class="header">
+                       <i class="beer icon"></i><%= link_to "Click here to find a new yummy recipe", new_user_recipe_path, class: "item" %>
+                    </div>
+                <% end %>
+                
+                <div class="ui header large olive "> My recipes </div>
+                <% if @recipes.count > 0 %>
+                    <div class="ui cards">
+                        <%= render "recipes/recipe", obj: @recipes %>
+                    </div>
+                <% else %>
+                    <div class="header">
+                        <i class="birthday cake icon"></i><%= link_to "Click here to create a new recipe", new_recipe_path, class: "item" %>
+                    </div>
+                <% end %>
             </div>
-        <% else %>
-            <div class="header">
-               <i class="beer icon"></i><%= link_to "Click here to find a new yummy recipe", new_user_recipe_path, class: "item" %>
-            </div>
-        <% end %>
-    </div>
+        </div>
     
-    <div class="ui header large olive "> My recipes </div>
-        <% if @recipes.count > 0 %>
-            <div class="ui cards">
-                <%= render "recipes/recipe", obj: @recipes %>
-            </div>
-        <% else %>
-            <div class="header">
-                <i class="birthday cake icon"></i><%= link_to "Click here to create a new recipe", new_recipe_path, class: "item" %>
-            </div>
-        <% end %>
-    </div> 
-
-    <div class="four wide column">
-        <div class="ui header large olive "> My Friends </div>
-        <% if @friends.count > 0 %>
-            <%= render "users/friend", obj: @friends %>
-        <% else %>
-            <div class="header">
-                <i class="user secret icon"></i><%= link_to "Click here to find a new friend", new_friendship_path, class: "item" %>
-            </div>
-        <% end %>
+        <div class="four wide column">
+            <div class="ui header large olive "> My Friends </div>
+            <% if @friends.count > 0 %>
+                <%= render "users/friend", obj: @friends %>
+            <% else %>
+                <div class="header">
+                    <i class="user secret icon"></i><%= link_to "Click here to find a new friend", new_friendship_path, class: "item" %>
+                </div>
+            <% end %>
+        </div>
+        
     </div>
-</div>
 </div>
    
         

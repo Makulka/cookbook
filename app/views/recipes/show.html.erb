@@ -23,7 +23,7 @@
 <div class="content">
     Average rating
     <div class="average-review-rating" data-score=<%= @average_review %>></div>
-			<span class="number-of-reviews"><em>From: </em><%= @recipe.comments.count %> reviews </span>
+	<em>From: </em><%= pluralize(@recipe.comments.count, "review") %>
 </div>
 
 <% if logged_in? %>
@@ -39,7 +39,7 @@
         <% if !current_user.has_not_this_recipe?(@recipe.id)%>
             <div class="item">
                 <i class="minus olive icon"></i>
-                <%= link_to "Remove", user_recipe_path(@recipe), method: :delete,
+                <%= link_to "Remove from favourites", user_recipe_path(@recipe), method: :delete,
                     data: { confirm: "Are you sure you want to remove this recipe from your list?"},class: "content" %>
             </div>
         <% end %>

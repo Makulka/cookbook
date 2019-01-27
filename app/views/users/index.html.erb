@@ -10,12 +10,16 @@
     
         <div class="card">
             <div class="content">
+                <%= image_tag(user.profile_picture, class: "right floated tiny ui image") if user.profile_picture.attached? %> 
                 <div class="header"><%= user.username%></div>
-                <% if user.first_name || user.last_name %>
-                    <div class="content">
-                        <strong>Name: </strong><%= user.first_name if user.first_name %> <%= user.last_name if user.last_name %>
-                    </div>
-                <% end %>
+                <div class="content">
+                    <strong>Name: </strong>
+                    <% if user.first_name || user.last_name %>
+                        <%= user.first_name if user.first_name %> <%= user.last_name if user.last_name %>
+                    <% else %>
+                        <em>Not provided</em>
+                    <% end %>
+                </div>
                 <div class="content">
                     <strong>Email: </strong><%= user.email%>
                 </div>
@@ -30,9 +34,7 @@
                 </div>
             </div>
                 
-                <%= link_to "View profile", user_path(user), class: "ui olive bottom attached button" %>
-            
+            <%= link_to "View profile", user_path(user), class: "ui olive bottom attached button" %>
         </div>
-        
     <% end %>
 </div>
