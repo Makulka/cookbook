@@ -44,7 +44,7 @@
 <div class="ui container">
     <div class="ui two column stackable grid">
         
-        <div class="twelve wide column">
+        <div class="thirteen wide column" id="recipe-column">
             <div class="margin-bottom-50">
                 <div class="ui header large olive "> My favourited recipes </div>
                 <% if @user.recipes.count > 0 %>
@@ -57,7 +57,7 @@
                     </div>
                 <% end %>
                 
-                <div class="ui header large olive "> My recipes </div>
+                <div class="ui header large olive" id="my-recipes"> My recipes </div>
                 <% if @recipes.count > 0 %>
                     <div class="ui cards">
                         <%= render "recipes/recipe", obj: @recipes %>
@@ -70,7 +70,7 @@
             </div>
         </div>
     
-        <div class="four wide column">
+        <div class="three wide column" id="friend-column">
             <div class="ui header large olive "> My Friends </div>
             <% if @friends.count > 0 %>
                 <%= render "users/friend", obj: @friends %>

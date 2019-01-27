@@ -92,3 +92,22 @@ main {
     margin-bottom: 10px;
     width: auto;
 }
+
+#recipe-column {
+    border-right: 1px solid grey;
+    border-top: 1px solid grey;
+    padding-top: 35px;
+    @media (max-width: 767px) {
+        border-right: none;
+    }
+}
+
+#friend-column {
+    border-top: 1px solid grey;
+    padding-top: 35px;
+}
+
+#my-recipes {
+    border-top: 1px solid grey;
+    padding-top: 25px;
+}
