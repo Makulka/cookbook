@@ -1,6 +1,5 @@
 
 <h3>Add a comment</h3>
-<%= render "shared/flash_messages" %>
         
 <div class="column">
     <%= form_for([@recipe, @recipe.comments.build], remote: true, :html => {class: "ui form", role: "form"}) do |f| %>

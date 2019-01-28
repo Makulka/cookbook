@@ -72,6 +72,7 @@ $(document).on('turbolinks:load', function() {
   $('.average-review-rating').raty({
 		readOnly: true,
 		path: '/assets/',
+		hints: ['discusting', 'for the brave only', 'OK', 'good', 'delicious'],
 		score: function() {
 			return $(this).attr('data-score')
 		}

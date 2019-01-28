@@ -14,10 +14,15 @@
   
   <body>
 
-    <main>
+    <header>
       <%= render "shared/navbar" %>
+    </header>
+    <main>
       <div class="ui container">
+        
         <%= render "shared/flash_messages" %>
+        
+        
         <%= yield %>
       </div>
     </main>

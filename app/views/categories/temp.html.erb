@@ -43,3 +43,11 @@
         </div>
     </div>
 </div>
+
+<% if params[:controller] == "comments" %>
+  <% if params[:action] == "create" || params[:action] == "destroy" %>
+    <div>
+      <%= render "shared/flash_messages" %>
+    </div>
+  <% end %>
+<% end %>
