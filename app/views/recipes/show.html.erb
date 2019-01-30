@@ -65,7 +65,7 @@
   <div class="sub header"><%= simple_format(@recipe.steps) %></div>
 </h3>
 
-<% if @recipe.link %>
+<% if @recipe.link? %>
     <h3 class="ui header">
       Link
       <div class="sub header"><%= @recipe.link %></div>
