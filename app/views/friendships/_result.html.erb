@@ -36,6 +36,8 @@
             <%= link_to "View", user_path(user), class: "ui olive button" %>
             <% if current_user.not_friends_with?(user.id)%>
                 <%= link_to "Add", friendships_path(user: current_user, friend: user), class: "ui blue button", method: :post %>
+            <% else %>
+              <span class="blue-font">Already added</span>
             <% end %>
           </td> 
         </tr>

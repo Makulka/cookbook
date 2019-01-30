@@ -69,6 +69,7 @@ $(document).on('turbolinks:load', function() {
   scroll_bottom();
   //submit_comment();
   
+  $('.average-review-rating').raty('destroy');
   $('.average-review-rating').raty({
 		readOnly: true,
 		path: '/assets/',

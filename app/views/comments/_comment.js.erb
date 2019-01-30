@@ -1,10 +1,18 @@
  /* global $ */
 $('#comments').html("<%= j (render 'comments/comment.html') %>");
 $('#comment_body').val('');
+	$('#rating-form').raty({
+		path: '/assets/',
+		score: undefined,                                      
+		scoreName: 'comment[rating]'
+	});
 
 
 $('.message .close').on('click', function() {
   $(this).closest('.message').transition('fade');
 });
+
+
+     
 
 
