@@ -4,6 +4,9 @@
             <i class="users icon"></i>
             <div class="content">
                 <%= link_to "#{friend.username}", user_path(friend) %>
+                <% if @user == current_user %>
+                    <%= link_to "Remove", friendship_path(friend), remote: true, method: :delete, data: { confirm: "Are you sure?" }, class: "ui label", id: "delete-btn" %>
+                <% end %>
             </div>
         </div>
     <% end %>
