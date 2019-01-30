@@ -46,7 +46,7 @@
         
         <div class="thirteen wide column" id="recipe-column">
             <div class="margin-bottom-50">
-                <div class="ui header large olive "> My favourited recipes </div>
+                <div class="ui header large olive "> Favourited recipes </div>
                 <% if @user.recipes.count > 0 %>
                     <div class="ui cards">
                         <%= render "recipes/recipe", obj: @favourite_recipes %>
@@ -57,7 +57,7 @@
                     </div>
                 <% end %>
                 
-                <div class="ui header large olive" id="my-recipes"> My recipes </div>
+                <div class="ui header large olive" id="my-recipes"> Created recipes </div>
                 <% if @recipes.count > 0 %>
                     <div class="ui cards">
                         <%= render "recipes/recipe", obj: @recipes %>
@@ -71,13 +71,22 @@
         </div>
     
         <div class="three wide column" id="friend-column">
-            <div class="ui header large olive "> My Friends </div>
+            <div class="ui header large olive "> Friends </div>
             <% if @friends.count > 0 %>
                 <%= render "users/friend", obj: @friends %>
-            <% else %>
                 <div class="header">
-                    <i class="user secret icon"></i><%= link_to "Click here to find a new friend", new_friendship_path, class: "item" %>
+                    <i class="user secret icon"></i>
+                    <%= link_to "Search for a new friend", new_friendship_path, class: "item" %>
                 </div>
+            <% else %>
+                <% if @user == current_user %> 
+                    <div class="header">
+                        <i class="user secret icon"></i>
+                        <%= link_to "Search for a new friend", new_friendship_path, class: "item" %>
+                    </div>
+                <% else %>
+                    <%= @user.username %> hasn't got any friends yet
+                <% end %>
             <% end %>
         </div>
         
