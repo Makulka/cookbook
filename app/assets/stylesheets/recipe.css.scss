@@ -1,0 +1,21 @@
+#recipe-div {
+    display: flex;
+    flex-wrap: wrap;
+    #recipe-pic {
+        width: 600px;
+        margin: 14px 30px 14px 0;
+        img {
+            max-width: 100%;
+        }
+    }
+    .item {
+        padding-top: 10px;
+    }
+    .list {
+        margin-bottom: 20px;
+    }
+}
+
+#description {
+    font-size: 18px;
+}

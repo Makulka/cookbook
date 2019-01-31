@@ -1,58 +1,70 @@
-<h1 class="ui center aligned icon header">
-    <i class="circular olive balance scale icon"></i>
+<h1 class="ui header">
     <%= @recipe.title%>
 </h1>
-
-<h2 class="ui header">
-    <%= @recipe.description %></em>
-</h2>
-
-<h5 class="ui header">
-    Create by: 
-    <% if logged_in? %>
-        <% if @recipe.creator_id == current_user.id %>
-            You <i class="smile olive icon"></i>  
-        <% else %>
-            <%= link_to "#{@creator.username}", user_path(@creator) %>
-        <% end %>
-    <% else %>
-        <%= @creator.username %>
-    <% end %>
-</h5>
-
 <div class="content">
-    Average rating
     <div class="average-review-rating" data-score=<%= @average_review %>></div>
 	<em>From: </em><%= pluralize(@recipe.comments.count, "review") %>
 </div>
 
-<% if logged_in? %>
-    <div class="ui list">
-        
-        <% if current_user.has_not_this_recipe?(@recipe.id)%>
+<div id="recipe-div">
+    <% if @recipe.pic.attached? %>
+        <div id="recipe-pic">
+            <%= image_tag(@recipe.pic)  %> 
+        </div>
+    <% end %>
+    
+    <% if logged_in? %>
+        <div class="ui list">
+            
+            <% if current_user.has_not_this_recipe?(@recipe.id)%>
+                <div class="item">
+                    <i class="plus olive icon"></i>
+                    <%= link_to "Add to favourites", user_recipes_path(user: current_user, recipe: @recipe), class: "content", method: :post %>
+                </div>
+             <% end %>
+            
+            <% if !current_user.has_not_this_recipe?(@recipe.id)%>
+                <div class="item">
+                    <i class="minus olive icon"></i>
+                    <%= link_to "Remove from favourites", user_recipe_path(@recipe), method: :delete,
+                        data: { confirm: "Are you sure you want to remove this recipe from your list?"},class: "content" %>
+                </div>
+            <% end %>
+            
+            <% if @recipe.creator_id == current_user.id %>
+                <div class="item">
+                    <i class="edit olive icon"></i>
+                    <%= link_to "Edit", edit_recipe_path(@recipe), class: "content" %>
+                </div>
+            <% end %>
+            
             <div class="item">
-                <i class="plus olive icon"></i>
-                <%= link_to "Add to favourites", user_recipes_path(user: current_user, recipe: @recipe), class: "content", method: :post %>
+                Create by: 
+                <% if logged_in? %>
+                    <% if @recipe.creator_id == current_user.id %>
+                        You <i class="smile olive icon"></i>  
+                    <% else %>
+                        <%= link_to "#{@creator.username}", user_path(@creator) %>
+                    <% end %>
+                <% else %>
+                    <%= @creator.username %>
+                <% end %>
             </div>
-         <% end %>
-        
-        <% if !current_user.has_not_this_recipe?(@recipe.id)%>
-            <div class="item">
-                <i class="minus olive icon"></i>
-                <%= link_to "Remove from favourites", user_recipe_path(@recipe), method: :delete,
-                    data: { confirm: "Are you sure you want to remove this recipe from your list?"},class: "content" %>
-            </div>
-        <% end %>
-        
-        <% if @recipe.creator_id == current_user.id %>
-            <div class="item">
-                <i class="edit olive icon"></i>
-                <%= link_to "Edit", edit_recipe_path(@recipe), class: "content" %>
-            </div>
-        <% end %>
-        
-    </div>
-<% end %>
+        </div>
+    <% end %>
+</div>
+
+<div id="description">
+    <%= @recipe.description %></em>
+</div>
+
+<h5 class="ui header">
+    
+</h5>
+
+
+
+
 
  
 <h3 class="ui header">

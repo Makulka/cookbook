@@ -48,6 +48,11 @@
             </div>
         </div>
         
+        <div class="field" id="profile-picture-upload">
+            <%= f.label :pic, "Picture (max. 2MB)" %>
+            <%= f.file_field :pic, onchange: "validateFiles(this);", data: { max_file_size: 2.megabytes } %>
+        </div>
+        
         
         <%= f.submit(@recipe.new_record? ? "Create" : "Edit", class: "ui olive submit button") %>
     <% end %>
