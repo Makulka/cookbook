@@ -1,7 +1,8 @@
 <% obj.each do |recipe| %>
-    <div class="card height-250">
+    <div class="card">
         
         <div class="content">
+            <%= image_tag(recipe.pic, class: "right floated tiny ui image") if recipe.pic.attached? %> 
             <div class="header">
                 <%= recipe.title %>
             </div>

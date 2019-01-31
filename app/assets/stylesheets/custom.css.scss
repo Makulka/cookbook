@@ -47,10 +47,6 @@ main {
     flex-wrap: wrap;
 }
 
-.height-250 {
-    height: 270px;
-}
-
 #vertical-divider {
     @media (max-width: 767px) {
         display: none;
