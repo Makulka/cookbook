@@ -80,7 +80,7 @@
 <% if @recipe.link? %>
     <h3 class="ui header">
       Link
-      <div class="sub header"><%= @recipe.link %></div>
+      <div class="sub header"><a href="<%= @recipe.link %>"><%= @recipe.link %></a></div>
     </h3>
 <% end %>
 
